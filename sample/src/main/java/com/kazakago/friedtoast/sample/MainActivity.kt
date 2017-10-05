@@ -18,10 +18,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFriedToast() {
-        FriedToast.create(this)
-                .setTitle("Title!!")
-                .setDescription("Description!!")
-                .setIconImageResource(R.drawable.ic_done_white_24dp)
+        FriedToast.create(
+                context = this,
+                titleText = "Title!",
+                descriptionText = "Description!!",
+                iconImageResourceId = R.drawable.ic_done_white_24dp)
                 .show()
     }
 
