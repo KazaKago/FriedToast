@@ -275,7 +275,7 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
     }
 
     override fun setDescriptionTextColorRes(@ColorRes textColorRes: Int): FriedToast {
-        setDescriptionTextColorRes(ContextCompat.getColor(context, textColorRes))
+        setDescriptionTextColor(ContextCompat.getColor(context, textColorRes))
         return this
     }
 

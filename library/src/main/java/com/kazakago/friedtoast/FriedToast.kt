@@ -83,35 +83,29 @@ interface FriedToast {
 
     fun show()
 
-    /* alpha */
-
-    fun setAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float): FriedToast
-
-    /* Minimum Size */
-
-    fun setMinimumWidth(width: Int): FriedToast
-
-    fun setMinimumHeight(height: Int): FriedToast
-
-    /* Background */
-
-    fun setBackgroundColor(@ColorInt color: Int): FriedToast
-
-    fun setBackgroundColorRes(@ColorRes colorRes: Int): FriedToast
-
-    fun setBackgroundCornerRadius(cornerRadius: Float): FriedToast
-
-    /* Duration */
+    /* Toast */
 
     fun setDuration(duration: Int): FriedToast
-
-    /* Gravity */
 
     fun setGravity(gravity: Int): FriedToast
 
     fun setXOffset(xOffset: Int): FriedToast
 
     fun setYOffset(yOffset: Int): FriedToast
+
+    /* View */
+
+    fun setAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float): FriedToast
+
+    fun setMinimumWidth(width: Int): FriedToast
+
+    fun setMinimumHeight(height: Int): FriedToast
+
+    fun setBackgroundColor(@ColorInt color: Int): FriedToast
+
+    fun setBackgroundColorRes(@ColorRes colorRes: Int): FriedToast
+
+    fun setBackgroundCornerRadius(cornerRadius: Float): FriedToast
 
     /* IconImageView */
 
