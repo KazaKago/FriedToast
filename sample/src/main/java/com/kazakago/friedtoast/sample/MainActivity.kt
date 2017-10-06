@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
                 context = this,
                 titleText = "Title!",
                 descriptionText = "Description!!",
-                iconImageResourceId = R.drawable.ic_done_white_24dp)
+                iconImageResourceId = R.drawable.ic_done_white_80dp)
                 .show()
     }
 

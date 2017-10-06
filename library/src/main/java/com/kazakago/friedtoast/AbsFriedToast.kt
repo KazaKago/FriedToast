@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.kazakago.friedtoast.extension.setBackgroundCompat
 
 abstract class AbsFriedToast(private val context: Context) : FriedToast {
 

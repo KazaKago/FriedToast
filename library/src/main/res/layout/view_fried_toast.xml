@@ -21,7 +21,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
-        tools:src="@drawable/ic_done_white_24dp"/>
+        tools:src="@drawable/ic_done_white_80dp"/>
 
     <TextView
         android:id="@+id/toastTitleTextView"

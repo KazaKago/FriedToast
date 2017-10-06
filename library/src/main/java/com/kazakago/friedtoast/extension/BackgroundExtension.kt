@@ -1,4 +1,4 @@
-package com.kazakago.friedtoast
+package com.kazakago.friedtoast.extension
 
 import android.graphics.drawable.Drawable
 import android.os.Build
