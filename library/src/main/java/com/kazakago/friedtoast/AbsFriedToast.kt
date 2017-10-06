@@ -1,8 +1,7 @@
 package com.kazakago.friedtoast
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Typeface
+import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
@@ -26,6 +25,8 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
     @ColorInt private var viewBackgroundColor: Int? = null
     private var viewBackgroundCornerRadius: Float? = null
     private var iconImageDrawable: Drawable? = null
+    private var iconScaleType: ImageView.ScaleType? = null
+    private var iconColorFilter: ColorFilter? = null
     private var titleText: CharSequence? = null
     private var titleTextSize: Float? = null
     @ColorInt private var titleTextColor: Int? = null
@@ -82,6 +83,8 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
 
         onCreateIconImageView(toastView).apply {
             iconImageDrawable?.let { setImageDrawable(it) }
+            iconScaleType?.let { scaleType = it }
+            iconColorFilter?.let { colorFilter = it }
             onIconImageViewCreated(this)
         }
 
@@ -156,7 +159,7 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
     }
 
     override fun setBackgroundColorRes(@ColorRes colorRes: Int): FriedToast {
-        viewBackgroundColor = ContextCompat.getColor(context, colorRes)
+        setBackgroundColor(ContextCompat.getColor(context, colorRes))
         return this
     }
 
@@ -167,18 +170,48 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
 
     /* IconImageView */
 
-    override fun setIconImageResource(@DrawableRes resourceId: Int): FriedToast {
-        iconImageDrawable = ContextCompat.getDrawable(context, resourceId)
-        return this
-    }
-
     override fun setIconImageDrawable(drawable: Drawable?): FriedToast {
         iconImageDrawable = drawable
         return this
     }
 
+    override fun setIconImageResource(@DrawableRes resourceId: Int): FriedToast {
+        setIconImageDrawable(ContextCompat.getDrawable(context, resourceId))
+        return this
+    }
+
     override fun setIconImageBitmap(bitmap: Bitmap?): FriedToast {
-        iconImageDrawable = BitmapDrawable(context.resources, bitmap)
+        setIconImageDrawable(BitmapDrawable(context.resources, bitmap))
+        return this
+    }
+
+    override fun setIconScaleType(scaleType: ImageView.ScaleType): FriedToast {
+        iconScaleType = scaleType
+        return this
+    }
+
+    override fun setIconColorFilter(colorFilter: ColorFilter): FriedToast {
+        iconColorFilter = colorFilter
+        return this
+    }
+
+    override fun setIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode): FriedToast {
+        setIconColorFilter(PorterDuffColorFilter(color, mode))
+        return this
+    }
+
+    override fun setIconColorFilterRes(@ColorRes color: Int, mode: PorterDuff.Mode): FriedToast {
+        setIconColorFilter(ContextCompat.getColor(context, color), mode)
+        return this
+    }
+
+    override fun setIconColorFilter(@ColorInt color: Int): FriedToast {
+        setIconColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+        return this
+    }
+
+    override fun setIconColorFilterRes(@ColorRes color: Int): FriedToast {
+        setIconColorFilter(ContextCompat.getColor(context, color))
         return this
     }
 
@@ -190,7 +223,7 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
     }
 
     override fun setTitle(@StringRes textRes: Int): FriedToast {
-        titleText = context.getString(textRes)
+        setTitle(context.getString(textRes))
         return this
     }
 
@@ -205,11 +238,11 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
     }
 
     override fun setTitleTextColorRes(@ColorRes textColorRes: Int): FriedToast {
-        titleTextColor = ContextCompat.getColor(context, textColorRes)
+        setTitleTextColor(ContextCompat.getColor(context, textColorRes))
         return this
     }
 
-    override fun setTitleTypeFace(typeFace: Typeface?): FriedToast {
+    override fun setTitleTypeFace(typeFace: Typeface): FriedToast {
         titleTypeFace = typeFace
         return this
     }
@@ -227,7 +260,7 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
     }
 
     override fun setDescription(@StringRes textRes: Int): FriedToast {
-        descriptionText = context.getString(textRes)
+        setDescription(context.getString(textRes))
         return this
     }
 
@@ -242,11 +275,11 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
     }
 
     override fun setDescriptionTextColorRes(@ColorRes textColorRes: Int): FriedToast {
-        descriptionTextColor = ContextCompat.getColor(context, textColorRes)
+        setDescriptionTextColorRes(ContextCompat.getColor(context, textColorRes))
         return this
     }
 
-    override fun setDescriptionTypeFace(typeFace: Typeface?): FriedToast {
+    override fun setDescriptionTypeFace(typeFace: Typeface): FriedToast {
         descriptionTypeFace = typeFace
         return this
     }

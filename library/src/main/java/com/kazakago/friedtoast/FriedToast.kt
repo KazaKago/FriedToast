@@ -2,9 +2,12 @@ package com.kazakago.friedtoast
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.ColorFilter
+import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.support.annotation.*
+import android.widget.ImageView
 
 interface FriedToast {
 
@@ -21,9 +24,13 @@ interface FriedToast {
                    @ColorInt backgroundColor: Int? = null,
                    @ColorRes backgroundColorRes: Int? = null,
                    backgroundCornerRadius: Float? = null,
-                   @DrawableRes iconImageResourceId: Int? = null,
                    iconImageDrawable: Drawable? = null,
+                   @DrawableRes iconImageResourceId: Int? = null,
                    iconImageBitmap: Bitmap? = null,
+                   iconScaleType: ImageView.ScaleType? = null,
+                   iconColorFilter: ColorFilter? = null,
+                   @ColorInt iconColorFilterColor: Int? = null,
+                   @ColorRes iconColorFilterColorRes: Int? = null,
                    titleText: CharSequence? = null,
                    @StringRes titleTextRes: Int? = null,
                    titleTextSize: Float? = null,
@@ -49,9 +56,13 @@ interface FriedToast {
                 backgroundColor?.let { setBackgroundColor(it) }
                 backgroundColorRes?.let { setBackgroundColorRes(it) }
                 backgroundCornerRadius?.let { setBackgroundCornerRadius(it) }
-                iconImageResourceId?.let { setIconImageResource(it) }
                 iconImageDrawable?.let { setIconImageDrawable(it) }
+                iconImageResourceId?.let { setIconImageResource(it) }
                 iconImageBitmap?.let { setIconImageBitmap(it) }
+                iconScaleType?.let { setIconScaleType(it) }
+                iconColorFilter?.let { setIconColorFilter(it) }
+                iconColorFilterColor?.let { setIconColorFilter(it) }
+                iconColorFilterColorRes?.let { setIconColorFilterRes(it) }
                 titleText?.let { setTitle(it) }
                 titleTextRes?.let { setTitle(it) }
                 titleTextSize?.let { setTitleTextSize(it) }
@@ -69,6 +80,8 @@ interface FriedToast {
             }
         }
     }
+
+    fun show()
 
     /* alpha */
 
@@ -102,11 +115,23 @@ interface FriedToast {
 
     /* IconImageView */
 
-    fun setIconImageResource(@DrawableRes resourceId: Int): FriedToast
-
     fun setIconImageDrawable(drawable: Drawable?): FriedToast
 
+    fun setIconImageResource(@DrawableRes resourceId: Int): FriedToast
+
     fun setIconImageBitmap(bitmap: Bitmap?): FriedToast
+
+    fun setIconScaleType(scaleType: ImageView.ScaleType): FriedToast
+
+    fun setIconColorFilter(colorFilter: ColorFilter): FriedToast
+
+    fun setIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode): FriedToast
+
+    fun setIconColorFilterRes(@ColorRes color: Int, mode: PorterDuff.Mode): FriedToast
+
+    fun setIconColorFilter(@ColorInt color: Int): FriedToast
+
+    fun setIconColorFilterRes(@ColorRes color: Int): FriedToast
 
     /* TitleTextView */
 
@@ -120,7 +145,7 @@ interface FriedToast {
 
     fun setTitleTextColorRes(@ColorRes textColorRes: Int): FriedToast
 
-    fun setTitleTypeFace(typeFace: Typeface?): FriedToast
+    fun setTitleTypeFace(typeFace: Typeface): FriedToast
 
     fun setTitleGravity(gravity: Int): FriedToast
 
@@ -136,12 +161,8 @@ interface FriedToast {
 
     fun setDescriptionTextColorRes(@ColorRes textColorRes: Int): FriedToast
 
-    fun setDescriptionTypeFace(typeFace: Typeface?): FriedToast
+    fun setDescriptionTypeFace(typeFace: Typeface): FriedToast
 
     fun setDescriptionGravity(gravity: Int): FriedToast
-
-    /* Show */
-
-    fun show()
 
 }
