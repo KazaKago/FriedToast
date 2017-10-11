@@ -7,6 +7,8 @@ FriedToast
 
 A rich Toast library that can display images, titles, and descriptions.
 
+![./Artwork/screenshot.jpg](./Artwork/screenshot.jpg)
+
 ## Requirement
 
 - Android 4.0.3 (API 15) or later
@@ -21,7 +23,7 @@ compile 'com.kazakago.friedtoast:friedtoast:x.x.x'
 
 ## Usage
 
-The following is a sample to encrypt and decrypt text using RSA encryption.
+The following is a sample to show FriedToast.
 
 ### Kotlin
 
@@ -49,6 +51,16 @@ void showFriedToast(Context context) {
 ```
 
 Refer to the sample module ([Java](https://github.com/KazaKago/FriedToast/tree/master/samplejava) & [Kotlin](https://github.com/KazaKago/FriedToast/tree/master/samplekotlin)) for details.
+
+## Advanced
+
+### Custom View
+
+[WIP]
+
+### Add Property
+
+[WIP]
 
 ## License
 MIT License
