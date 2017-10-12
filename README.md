@@ -108,7 +108,7 @@ fun setDescriptionGravity(gravity: Int): FriedToastCoreInterface
 ### Custom View
 
 If you want to use the original View, create a class that inherits from `FriedToastCore`.  
-and you need to implement following methodｓ.  
+and you need to implement following methods.  
 
 ```kotlin
 class CustomFriedToast(context: Context) : FriedToastCore(context) {
