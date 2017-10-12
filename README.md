@@ -2,7 +2,7 @@ FriedToast
 ====
 
 [![Download](https://api.bintray.com/packages/kazakago/maven/friedtoast/images/download.svg)](https://bintray.com/kazakago/maven/friedtoast/_latestVersion)
-[![Bitrise](https://www.bitrise.io/app/436ed4113cb15072.svg?token=5I58EK088C0wp3UWmf75qA&branch=master)]()
+[![Build Status](https://www.bitrise.io/app/0b21fa1e49d47e38/status.svg?token=Ye6rfS_lI_nsoE3xlqnhGw)](https://www.bitrise.io/app/0b21fa1e49d47e38)
 [![license](https://img.shields.io/github/license/kazakago/friedtoast.svg)](LICENSE.md)
 
 A rich Toast library that can display images, titles, and descriptions.
