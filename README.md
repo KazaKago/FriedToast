@@ -29,13 +29,12 @@ The following is a sample to show FriedToast.
 
 ```kotlin
 fun showFriedToast(context: Context) {
-    FriedToast.create(
-            context = this,
-            titleText = "Title!",
-            descriptionText = "Description!!",
-            iconImageResourceId = R.drawable.ic_done_white_80dp)
+    FriedToast.create(context)
+            .setTitle("Title!")
+            .setDescription("Description!!")
+            .setIconImageResource(R.drawable.ic_done_white_80dp)
             .show()
-}
+    }
 ```
 
 ### Java
