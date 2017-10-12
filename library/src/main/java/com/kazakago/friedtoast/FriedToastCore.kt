@@ -14,7 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.kazakago.friedtoast.extension.setBackgroundCompat
 
-abstract class AbsFriedToast(private val context: Context) : FriedToast {
+abstract class FriedToastCore(private val context: Context) : FriedToastCoreInterface {
 
     private var toastDuration: Int? = null
     private var toastGravity: Int? = null
@@ -117,175 +117,175 @@ abstract class AbsFriedToast(private val context: Context) : FriedToast {
 
     /* Toast */
 
-    override fun setDuration(duration: Int): FriedToast {
+    override fun setDuration(duration: Int): FriedToastCoreInterface {
         toastDuration = duration
         return this
     }
 
-    override fun setGravity(gravity: Int): FriedToast {
+    override fun setGravity(gravity: Int): FriedToastCoreInterface {
         toastGravity = gravity
         return this
     }
 
-    override fun setXOffset(xOffset: Int): FriedToast {
+    override fun setXOffset(xOffset: Int): FriedToastCoreInterface {
         toastXOffset = xOffset
         return this
     }
 
-    override fun setYOffset(yOffset: Int): FriedToast {
+    override fun setYOffset(yOffset: Int): FriedToastCoreInterface {
         toastYOffset = yOffset
         return this
     }
 
     /* View */
 
-    override fun setAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float): FriedToast {
+    override fun setAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float): FriedToastCoreInterface {
         viewAlpha = alpha
         return this
     }
 
-    override fun setMinimumWidth(width: Int): FriedToast {
+    override fun setMinimumWidth(width: Int): FriedToastCoreInterface {
         viewMinimumWidth = width
         return this
     }
 
-    override fun setMinimumHeight(height: Int): FriedToast {
+    override fun setMinimumHeight(height: Int): FriedToastCoreInterface {
         viewMinimumHeight = height
         return this
     }
 
-    override fun setBackgroundColor(@ColorInt color: Int): FriedToast {
+    override fun setBackgroundColor(@ColorInt color: Int): FriedToastCoreInterface {
         viewBackgroundColor = color
         return this
     }
 
-    override fun setBackgroundColorRes(@ColorRes colorRes: Int): FriedToast {
+    override fun setBackgroundColorRes(@ColorRes colorRes: Int): FriedToastCoreInterface {
         setBackgroundColor(ContextCompat.getColor(context, colorRes))
         return this
     }
 
-    override fun setBackgroundCornerRadius(cornerRadius: Float): FriedToast {
+    override fun setBackgroundCornerRadius(cornerRadius: Float): FriedToastCoreInterface {
         viewBackgroundCornerRadius = cornerRadius
         return this
     }
 
     /* IconImageView */
 
-    override fun setIconImageDrawable(drawable: Drawable?): FriedToast {
+    override fun setIconImageDrawable(drawable: Drawable?): FriedToastCoreInterface {
         iconImageDrawable = drawable
         return this
     }
 
-    override fun setIconImageResource(@DrawableRes resourceId: Int): FriedToast {
+    override fun setIconImageResource(@DrawableRes resourceId: Int): FriedToastCoreInterface {
         setIconImageDrawable(ContextCompat.getDrawable(context, resourceId))
         return this
     }
 
-    override fun setIconImageBitmap(bitmap: Bitmap?): FriedToast {
+    override fun setIconImageBitmap(bitmap: Bitmap?): FriedToastCoreInterface {
         setIconImageDrawable(BitmapDrawable(context.resources, bitmap))
         return this
     }
 
-    override fun setIconScaleType(scaleType: ImageView.ScaleType): FriedToast {
+    override fun setIconScaleType(scaleType: ImageView.ScaleType): FriedToastCoreInterface {
         iconScaleType = scaleType
         return this
     }
 
-    override fun setIconColorFilter(colorFilter: ColorFilter): FriedToast {
+    override fun setIconColorFilter(colorFilter: ColorFilter): FriedToastCoreInterface {
         iconColorFilter = colorFilter
         return this
     }
 
-    override fun setIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode): FriedToast {
+    override fun setIconColorFilter(@ColorInt color: Int, mode: PorterDuff.Mode): FriedToastCoreInterface {
         setIconColorFilter(PorterDuffColorFilter(color, mode))
         return this
     }
 
-    override fun setIconColorFilterRes(@ColorRes color: Int, mode: PorterDuff.Mode): FriedToast {
+    override fun setIconColorFilterRes(@ColorRes color: Int, mode: PorterDuff.Mode): FriedToastCoreInterface {
         setIconColorFilter(ContextCompat.getColor(context, color), mode)
         return this
     }
 
-    override fun setIconColorFilter(@ColorInt color: Int): FriedToast {
+    override fun setIconColorFilter(@ColorInt color: Int): FriedToastCoreInterface {
         setIconColorFilter(color, PorterDuff.Mode.SRC_ATOP)
         return this
     }
 
-    override fun setIconColorFilterRes(@ColorRes color: Int): FriedToast {
+    override fun setIconColorFilterRes(@ColorRes color: Int): FriedToastCoreInterface {
         setIconColorFilter(ContextCompat.getColor(context, color))
         return this
     }
 
     /* TitleTextView */
 
-    override fun setTitle(text: CharSequence?): FriedToast {
+    override fun setTitle(text: CharSequence?): FriedToastCoreInterface {
         titleText = text
         return this
     }
 
-    override fun setTitle(@StringRes textRes: Int): FriedToast {
+    override fun setTitle(@StringRes textRes: Int): FriedToastCoreInterface {
         setTitle(context.getString(textRes))
         return this
     }
 
-    override fun setTitleTextSize(textSize: Float): FriedToast {
+    override fun setTitleTextSize(textSize: Float): FriedToastCoreInterface {
         titleTextSize = textSize
         return this
     }
 
-    override fun setTitleTextColor(@ColorInt textColor: Int): FriedToast {
+    override fun setTitleTextColor(@ColorInt textColor: Int): FriedToastCoreInterface {
         titleTextColor = textColor
         return this
     }
 
-    override fun setTitleTextColorRes(@ColorRes textColorRes: Int): FriedToast {
+    override fun setTitleTextColorRes(@ColorRes textColorRes: Int): FriedToastCoreInterface {
         setTitleTextColor(ContextCompat.getColor(context, textColorRes))
         return this
     }
 
-    override fun setTitleTypeFace(typeFace: Typeface): FriedToast {
+    override fun setTitleTypeFace(typeFace: Typeface): FriedToastCoreInterface {
         titleTypeFace = typeFace
         return this
     }
 
-    override fun setTitleGravity(gravity: Int): FriedToast {
+    override fun setTitleGravity(gravity: Int): FriedToastCoreInterface {
         titleGravity = gravity
         return this
     }
 
     /* DescriptionTextView */
 
-    override fun setDescription(text: CharSequence?): FriedToast {
+    override fun setDescription(text: CharSequence?): FriedToastCoreInterface {
         descriptionText = text
         return this
     }
 
-    override fun setDescription(@StringRes textRes: Int): FriedToast {
+    override fun setDescription(@StringRes textRes: Int): FriedToastCoreInterface {
         setDescription(context.getString(textRes))
         return this
     }
 
-    override fun setDescriptionTextSize(textSize: Float): FriedToast {
+    override fun setDescriptionTextSize(textSize: Float): FriedToastCoreInterface {
         descriptionTextSize = textSize
         return this
     }
 
-    override fun setDescriptionTextColor(@ColorInt textColor: Int): FriedToast {
+    override fun setDescriptionTextColor(@ColorInt textColor: Int): FriedToastCoreInterface {
         descriptionTextColor = textColor
         return this
     }
 
-    override fun setDescriptionTextColorRes(@ColorRes textColorRes: Int): FriedToast {
+    override fun setDescriptionTextColorRes(@ColorRes textColorRes: Int): FriedToastCoreInterface {
         setDescriptionTextColor(ContextCompat.getColor(context, textColorRes))
         return this
     }
 
-    override fun setDescriptionTypeFace(typeFace: Typeface): FriedToast {
+    override fun setDescriptionTypeFace(typeFace: Typeface): FriedToastCoreInterface {
         descriptionTypeFace = typeFace
         return this
     }
 
-    override fun setDescriptionGravity(gravity: Int): FriedToast {
+    override fun setDescriptionGravity(gravity: Int): FriedToastCoreInterface {
         descriptionGravity = gravity
         return this
     }

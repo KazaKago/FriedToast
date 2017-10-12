@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
     }
 
     private void showFriedToast() {
-        FriedToast.Companion.create(this)
+        FriedToast.create(this)
                 .setTitle("Title!")
                 .setDescription("Description!!")
                 .setIconImageResource(R.drawable.ic_done_white_80dp)

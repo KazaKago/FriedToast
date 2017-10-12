@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/FriedToast.iml" filepath="$PROJECT_DIR$/FriedToast.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/samplejava/samplejava.iml" filepath="$PROJECT_DIR$/samplejava/samplejava.iml" />
-      <module fileurl="file://$PROJECT_DIR$/samplekotlin/sampleKotlin.iml" filepath="$PROJECT_DIR$/samplekotlin/sampleKotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/samplekotlin/samplekotlin.iml" filepath="$PROJECT_DIR$/samplekotlin/samplekotlin.iml" />
     </modules>
   </component>
 </project>
