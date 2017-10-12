@@ -1,81 +1,44 @@
 package com.kazakago.friedtoast
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Typeface
-import android.graphics.drawable.Drawable
-import android.support.annotation.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 
-interface FriedToast {
+class FriedToast(context: Context) : FriedToastCore(context) {
 
     companion object {
-        fun create(context: Context): FriedToast = FriedToastImpl(context)
+        @JvmStatic
+        fun create(context: Context) = FriedToast(context)
     }
 
-    /* IconImageView */
+    override fun onCreateView(inflater: LayoutInflater): View = inflater.inflate(R.layout.view_fried_toast, null)
 
-    fun setIconImageResource(@DrawableRes resourceId: Int): FriedToast
+    override fun onCreateIconImageView(view: View): ImageView = view.findViewById(R.id.toastImageView)
 
-    fun setIconImageDrawable(drawable: Drawable?): FriedToast
+    override fun onCreateTitleTextView(view: View): TextView = view.findViewById(R.id.toastTitleTextView)
 
-    fun setIconImageBitmap(bitmap: Bitmap?): FriedToast
+    override fun onCreateDescriptionTextView(view: View): TextView = view.findViewById(R.id.toastDescriptionTextView)
 
-    /* TitleTextView */
+    override fun onCreateToast(toast: Toast): Toast {
+        toast.duration = Toast.LENGTH_SHORT
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        return toast
+    }
 
-    fun setTitle(text: CharSequence? = null, textSize: Float? = null, @ColorInt textColor: Int? = null, typeFace: Typeface? = null, gravity: Int? = null): FriedToast
+    override fun onIconImageViewCreated(iconImageView: ImageView) {
+        iconImageView.visibility = if (iconImageView.drawable != null) View.VISIBLE else View.GONE
+    }
 
-    fun setTitle(@StringRes textRes: Int, textSize: Float? = null, @ColorInt textColor: Int? = null, typeFace: Typeface? = null, gravity: Int? = null): FriedToast
+    override fun onTitleTextViewCreated(titleTextView: TextView) {
+        titleTextView.visibility = if (titleTextView.text.isNotBlank()) View.VISIBLE else View.GONE
+    }
 
-    fun setTitleTextSize(textSize: Float): FriedToast
-
-    fun setTitleTextColor(@ColorInt textColor: Int): FriedToast
-
-    fun setTitleTextColorRes(@ColorRes textColorRes: Int): FriedToast
-
-    fun setTitleTypeFace(typeFace: Typeface): FriedToast
-
-    fun setTitleGravity(gravity: Int): FriedToast
-
-    /* DescriptionTextView */
-
-    fun setDescription(text: CharSequence? = null, textSize: Float? = null, @ColorInt textColor: Int? = null, typeFace: Typeface? = null, gravity: Int? = null): FriedToast
-
-    fun setDescription(@StringRes textRes: Int, textSize: Float? = null, @ColorInt textColor: Int? = null, typeFace: Typeface? = null, gravity: Int? = null): FriedToast
-
-    fun setDescriptionTextSize(textSize: Float): FriedToast
-
-    fun setDescriptionTextColor(@ColorInt textColor: Int): FriedToast
-
-    fun setDescriptionTextColorRes(@ColorRes textColorRes: Int): FriedToast
-
-    fun setDescriptionTypeFace(typeFace: Typeface): FriedToast
-
-    fun setDescriptionGravity(gravity: Int): FriedToast
-
-    /* alpha */
-
-    fun setAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float): FriedToast
-
-    /* Minimum Size */
-
-    fun setMinimumSize(width: Int, height: Int): FriedToast
-
-    /* Background */
-
-    fun setBackground(@ColorInt color: Int, cornerRadius: Float? = null): FriedToast
-
-    /* Duration */
-
-    fun setDuration(duration: Int): FriedToast
-
-    /* Gravity */
-
-    fun setGravity(gravity: Int): FriedToast
-
-    fun setGravity(gravity: Int, xOffset: Int, yOffset: Int): FriedToast
-
-    /* Show */
-
-    fun show()
+    override fun onDescriptionTextViewCreated(descriptionTextView: TextView) {
+        descriptionTextView.visibility = if (descriptionTextView.text.isNotBlank()) View.VISIBLE else View.GONE
+    }
 
 }

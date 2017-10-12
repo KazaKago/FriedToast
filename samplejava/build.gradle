@@ -1,19 +1,16 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'com.novoda.bintray-release'
-
-def VERSION_CODE = 1
-def VERSION_NAME = "1.0.0"
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
 
     defaultConfig {
+        applicationId "com.kazakago.friedtoast.samplejava"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
+        versionCode 1
+        versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,20 +21,9 @@ android {
     }
 }
 
-publish {
-    userOrg = 'kazakago'
-    groupId = 'com.kazakago.friedtoast'
-    artifactId = 'friedtoast'
-    publishVersion = VERSION_NAME
-    desc = 'A rich Toast library that can display images, titles, and descriptions.'
-    website = 'https://github.com/KazaKago/FriedToast'
-    licences = ['MIT']
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile 'com.android.support:support-compat:26.1.0'
+    compile project(path: ':library')
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -45,6 +31,5 @@ dependencies {
 }
 
 repositories {
-    mavenCentral()
     maven { url "https://maven.google.com" }
 }
