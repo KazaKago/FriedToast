@@ -21,6 +21,17 @@ Add the following gradle dependency exchanging x.x.x for the latest release.
 compile 'com.kazakago.friedtoast:friedtoast:x.x.x'
 ```
 
+### Tips
+
+If you have not added the `Google maven repository` to the project, please add the following to the gradle file.  
+This is included by default in project templates for `Android Studio 3.0` and later. [More details](https://developer.android.com/studio/build/dependencies.html#google-maven).  
+
+```
+repositories {
+    google()
+}
+```
+
 ## Usage
 
 The following is a sample to show FriedToast.
