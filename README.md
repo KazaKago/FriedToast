@@ -18,18 +18,7 @@ A rich Toast library that can display images, titles, and descriptions.
 Add the following gradle dependency exchanging x.x.x for the latest release.
 
 ```groovy
-compile 'com.kazakago.friedtoast:friedtoast:x.x.x'
-```
-
-### Tips
-
-If you have not added the `Google maven repository` to the project, please add the following to the gradle file.  
-This is included by default in project templates for `Android Studio 3.0` and later. [More details](https://developer.android.com/studio/build/dependencies.html#google-maven).  
-
-```
-repositories {
-    google()
-}
+implementation 'com.kazakago.friedtoast:friedtoast:x.x.x'
 ```
 
 ## Usage
