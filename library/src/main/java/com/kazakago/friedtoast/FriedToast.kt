@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
-class FriedToast(context: Context) : FriedToastCore(context) {
+open class FriedToast(context: Context) : FriedToastCore(context) {
 
     companion object {
         @JvmStatic

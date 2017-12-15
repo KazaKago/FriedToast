@@ -8,27 +8,26 @@
     android:layout_margin="32dp"
     android:background="@drawable/shape_rounded_corners"
     android:gravity="center"
-    android:minHeight="169dp"
-    android:minWidth="169dp"
+    android:minHeight="128dp"
+    android:minWidth="128dp"
     android:orientation="vertical"
     android:padding="16dp">
 
     <ImageView
         android:id="@+id/toastImageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:contentDescription="@null"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/ic_done_white_80dp"/>
+        tools:src="#ffffff"/>
 
     <TextView
         android:id="@+id/toastTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="16sp"
