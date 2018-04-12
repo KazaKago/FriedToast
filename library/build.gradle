@@ -2,16 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
 
-def VERSION_CODE = 4
-def VERSION_NAME = "1.2.0-SNAPSHOT"
-
 android {
     compileSdkVersion 27
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
+        versionCode 4
+        versionName "1.2.0-SNAPSHOT"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -26,7 +23,7 @@ publish {
     userOrg = 'kazakago'
     groupId = 'com.kazakago.friedtoast'
     artifactId = 'friedtoast'
-    publishVersion = VERSION_NAME
+    publishVersion = android.defaultConfig.versionName
     desc = 'A rich Toast library that can display images, titles, and descriptions.'
     website = 'https://github.com/KazaKago/FriedToast'
     licences = ['MIT']
@@ -39,8 +36,8 @@ afterEvaluate {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:support-compat:27.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:support-compat:27.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
