@@ -2,6 +2,7 @@ FriedToast
 ====
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.kazakago.friedtoast/friedtoast.svg)](https://search.maven.org/artifact/com.kazakago.friedtoast/friedtoast)
+[![javadoc](https://javadoc.io/badge2/com.kazakago.friedtoast/friedtoast/javadoc.svg)](https://javadoc.io/doc/com.kazakago.friedtoast/friedtoast)
 [![Test](https://github.com/KazaKago/friedtoast/workflows/Test/badge.svg)](https://github.com/KazaKago/friedtoast/actions?query=workflow%3ATest)
 [![license](https://img.shields.io/github/license/kazakago/friedtoast.svg)](LICENSE.md)
 
