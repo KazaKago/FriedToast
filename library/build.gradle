@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 android {
     compileSdkVersion 30
@@ -17,21 +19,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-publish {
-    userOrg = 'kazakago'
-    groupId = 'com.kazakago.friedtoast'
-    artifactId = 'friedtoast'
-    publishVersion = android.defaultConfig.versionName
-    desc = 'A rich Toast library that can display images, titles, and descriptions.'
-    website = 'https://github.com/KazaKago/FriedToast'
-    licences = ['MIT']
-}
-
-afterEvaluate {
-    //To avoid making javadoc generation fail.
-    tasks.findByPath(":library:releaseAndroidJavadocs").enabled = false
+    libraryVariants.all {
+        generateBuildConfigProvider.configure {
+            enabled = false
+        }
+    }
 }
 
 dependencies {
@@ -42,4 +34,72 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+task sourcesJar(type: Jar) {
+    group = 'publishing'
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadocJar(type: Jar) {
+    group = 'publishing'
+    archiveClassifier.set('javadoc')
+    from tasks.dokkaHtml
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from components.release
+                artifact tasks.sourcesJar
+                artifact tasks.javadocJar
+                groupId = 'com.kazakago.friedtoast'
+                artifactId = 'friedtoast'
+                version = android.defaultConfig.versionName
+                pom {
+                    name = 'FriedToast'
+                    description = 'A rich Toast library that can display images, titles, and descriptions.'
+                    url = 'https://github.com/KazaKago/FriedToast'
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://opensource.org/licenses/MIT'
+                        }
+                    }
+                    scm {
+                        connection = 'git:git@github.com:KazaKago/FriedToast'
+                        developerConnection = 'git:git@github.com:KazaKago/FriedToast'
+                        url = 'https://github.com/KazaKago/FriedToast'
+                    }
+                    developers {
+                        developer {
+                            name = 'KazaKago'
+                            email = 'kazakago@gmail.com'
+                            url = 'https://blog.kazakago.com/'
+                        }
+                    }
+                }
+                signing {
+                    def keyId = System.getenv('SIGNING_KEY_ID') ?: findProperty('signing.keyId').toString()
+                    def secretKey = System.getenv('SIGNING_SECRET_KEY') ?: findProperty('signing.secretKey').toString()
+                    def password = System.getenv('SIGNING_PASSWORD') ?: findProperty('signing.password').toString()
+                    useInMemoryPgpKeys(keyId, secretKey, password)
+                    sign(publishing.publications.maven)
+                }
+            }
+        }
+        repositories {
+            maven {
+                def releasesRepoUrl = uri('https://s01.oss.sonatype.org/service/local/staging/deploy/maven2')
+                def snapshotsRepoUrl = uri('https://s01.oss.sonatype.org/content/repositories/snapshots')
+                url = android.defaultConfig.versionName.endsWith("-SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
+                credentials {
+                    username = System.getenv('SONATYPE_USERNAME') ?: findProperty('sonatype.username').toString()
+                    password = System.getenv('SONATYPE_PASSWORD') ?: findProperty('sonatype.password').toString()
+                }
+            }
+        }
+    }
 }
