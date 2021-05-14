@@ -1,8 +1,8 @@
 FriedToast
 ====
 
-[![Download](https://api.bintray.com/packages/kazakago/maven/friedtoast/images/download.svg)](https://bintray.com/kazakago/maven/friedtoast/_latestVersion)
-[![Build Status](https://app.bitrise.io/app/50829bb350258412/status.svg?token=_YCSFX5VPu3QZB7wFBtZeA&branch=master)](https://app.bitrise.io/app/50829bb350258412)
+[![Maven Central](https://img.shields.io/maven-central/v/com.kazakago.friedtoast/friedtoast.svg)](https://search.maven.org/artifact/com.kazakago.friedtoast/friedtoast)
+[![Test](https://github.com/KazaKago/friedtoast/workflows/Test/badge.svg)](https://github.com/KazaKago/friedtoast/actions?query=workflow%3ATest)
 [![license](https://img.shields.io/github/license/kazakago/friedtoast.svg)](LICENSE.md)
 
 A rich Toast library that can display images, titles, and descriptions.
