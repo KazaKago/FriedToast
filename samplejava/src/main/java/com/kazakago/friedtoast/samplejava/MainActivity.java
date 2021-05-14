@@ -15,12 +15,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         Button showToastButton = findViewById(R.id.showToastButton);
-        showToastButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showFriedToast();
-            }
-        });
+        showToastButton.setOnClickListener(v -> showFriedToast());
     }
 
     private void showFriedToast() {

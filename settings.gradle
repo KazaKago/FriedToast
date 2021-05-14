@@ -1,1 +1,4 @@
-include ':library', ':samplejava', ':samplekotlin'
+rootProject.name = "FriedToast"
+include ':library'
+include ':samplejava'
+include ':samplekotlin'

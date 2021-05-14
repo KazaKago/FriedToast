@@ -2,8 +2,8 @@ package com.kazakago.friedtoast.samplekotlin
 
 import android.app.Activity
 import android.os.Bundle
+import android.widget.Button
 import com.kazakago.friedtoast.FriedToast
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {
 
@@ -11,6 +11,7 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val showToastButton = findViewById<Button>(R.id.showToastButton)
         showToastButton.setOnClickListener {
             showFriedToast()
         }

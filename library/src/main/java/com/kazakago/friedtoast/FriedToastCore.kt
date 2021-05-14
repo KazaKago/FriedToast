@@ -5,13 +5,13 @@ import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.support.annotation.*
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.*
+import androidx.core.content.ContextCompat
 import com.kazakago.friedtoast.extension.setBackgroundCompat
 
 abstract class FriedToastCore(private val context: Context) : FriedToastCoreInterface {
@@ -20,22 +20,30 @@ abstract class FriedToastCore(private val context: Context) : FriedToastCoreInte
     private var toastGravity: Int? = null
     private var toastXOffset: Int? = null
     private var toastYOffset: Int? = null
-    @FloatRange(from = 0.0, to = 1.0) private var viewAlpha: Float? = null
+
+    @FloatRange(from = 0.0, to = 1.0)
+    private var viewAlpha: Float? = null
     private var viewMinimumWidth: Int? = null
     private var viewMinimumHeight: Int? = null
-    @ColorInt private var viewBackgroundColor: Int? = null
+
+    @ColorInt
+    private var viewBackgroundColor: Int? = null
     private var viewBackgroundCornerRadius: Float? = null
     private var iconImageDrawable: Drawable? = null
     private var iconScaleType: ImageView.ScaleType? = null
     private var iconColorFilter: ColorFilter? = null
     private var titleText: CharSequence? = null
     private var titleTextSize: Float? = null
-    @ColorInt private var titleTextColor: Int? = null
+
+    @ColorInt
+    private var titleTextColor: Int? = null
     private var titleTypeFace: Typeface? = null
     private var titleGravity: Int? = null
     private var descriptionText: CharSequence? = null
     private var descriptionTextSize: Float? = null
-    @ColorInt private var descriptionTextColor: Int? = null
+
+    @ColorInt
+    private var descriptionTextColor: Int? = null
     private var descriptionTypeFace: Typeface? = null
     private var descriptionGravity: Int? = null
 
@@ -289,5 +297,4 @@ abstract class FriedToastCore(private val context: Context) : FriedToastCoreInte
         descriptionGravity = gravity
         return this
     }
-
 }

@@ -1,18 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
-def VERSION_CODE = 3
-def VERSION_NAME = "1.1.1"
+version = "1.2.0"
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 30
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        targetSdkVersion 30
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -20,28 +19,87 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-publish {
-    userOrg = 'kazakago'
-    groupId = 'com.kazakago.friedtoast'
-    artifactId = 'friedtoast'
-    publishVersion = VERSION_NAME
-    desc = 'A rich Toast library that can display images, titles, and descriptions.'
-    website = 'https://github.com/KazaKago/FriedToast'
-    licences = ['MIT']
-}
-
-afterEvaluate {
-    //To avoid making javadoc generation fail.
-    tasks.findByPath(":library:releaseAndroidJavadocs").enabled = false
+    libraryVariants.all {
+        generateBuildConfigProvider.configure {
+            enabled = false
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:support-compat:27.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+task sourcesJar(type: Jar) {
+    group = 'publishing'
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadocJar(type: Jar) {
+    group = 'publishing'
+    archiveClassifier.set('javadoc')
+    from tasks.dokkaHtml
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from components.release
+                artifact tasks.sourcesJar
+                artifact tasks.javadocJar
+                it.groupId = 'com.kazakago.friedtoast'
+                it.artifactId = 'friedtoast'
+                it.version = version
+                pom {
+                    name = 'FriedToast'
+                    description = 'A rich Toast library that can display images, titles, and descriptions.'
+                    url = 'https://github.com/KazaKago/FriedToast'
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://opensource.org/licenses/MIT'
+                        }
+                    }
+                    scm {
+                        connection = 'git:git@github.com:KazaKago/FriedToast'
+                        developerConnection = 'git:git@github.com:KazaKago/FriedToast'
+                        url = 'https://github.com/KazaKago/FriedToast'
+                    }
+                    developers {
+                        developer {
+                            name = 'KazaKago'
+                            email = 'kazakago@gmail.com'
+                            url = 'https://blog.kazakago.com/'
+                        }
+                    }
+                }
+                signing {
+                    def keyId = System.getenv('SIGNING_KEY_ID') ?: findProperty('signing.keyId').toString()
+                    def secretKey = System.getenv('SIGNING_SECRET_KEY') ?: findProperty('signing.secretKey').toString()
+                    def password = System.getenv('SIGNING_PASSWORD') ?: findProperty('signing.password').toString()
+                    useInMemoryPgpKeys(keyId, secretKey, password)
+                    sign(publishing.publications.maven)
+                }
+            }
+        }
+        repositories {
+            maven {
+                def releasesRepoUrl = uri('https://s01.oss.sonatype.org/service/local/staging/deploy/maven2')
+                def snapshotsRepoUrl = uri('https://s01.oss.sonatype.org/content/repositories/snapshots')
+                url = version.endsWith("-SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
+                credentials {
+                    username = System.getenv('SONATYPE_USERNAME') ?: findProperty('sonatype.username').toString()
+                    password = System.getenv('SONATYPE_PASSWORD') ?: findProperty('sonatype.password').toString()
+                }
+            }
+        }
+    }
 }

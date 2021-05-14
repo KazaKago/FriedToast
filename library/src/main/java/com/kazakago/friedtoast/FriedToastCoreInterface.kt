@@ -5,8 +5,8 @@ import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.support.annotation.*
 import android.widget.ImageView
+import androidx.annotation.*
 
 interface FriedToastCoreInterface {
 
@@ -87,5 +87,4 @@ interface FriedToastCoreInterface {
     fun setDescriptionTypeFace(typeFace: Typeface): FriedToastCoreInterface
 
     fun setDescriptionGravity(gravity: Int): FriedToastCoreInterface
-
 }
