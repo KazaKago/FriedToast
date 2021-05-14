@@ -40,5 +40,4 @@ open class FriedToast(context: Context) : FriedToastCore(context) {
     override fun onDescriptionTextViewCreated(descriptionTextView: TextView) {
         descriptionTextView.visibility = if (descriptionTextView.text.isNotBlank()) View.VISIBLE else View.GONE
     }
-
 }
